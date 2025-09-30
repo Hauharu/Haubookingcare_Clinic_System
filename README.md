@@ -179,7 +179,7 @@ Frontend/clinic_management/  # React frontend
 
 ## Contact
 - **Author:** Nguyen Trung Hau
-- **Email:** hauharu1510@gmail.com
+- **Email:** trunghauu71@gmail.com
 - **GitHub:** [Hauharu](https://github.com/Hauharu)
 
 ## License
