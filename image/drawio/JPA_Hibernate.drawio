@@ -1,0 +1,52 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.4 Chrome/138.0.7204.97 Electron/37.2.1 Safari/537.36" version="28.0.4">
+  <diagram name="Page-1" id="iCQ4aOnSidey-CkiV1TI">
+    <mxGraphModel dx="719" dy="498" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="696" pageHeight="838" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-1" value="Spring Data JPA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="1">
+          <mxGeometry x="266" y="219" width="159" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-2" value="Application" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="266" y="158" width="243" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-3" value="JPA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" vertex="1" parent="1">
+          <mxGeometry x="266" y="249" width="245" height="27" as="geometry" />
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-4" value="Hibernate" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0a30a;fontColor=#000000;strokeColor=#BD7000;" vertex="1" parent="1">
+          <mxGeometry x="266" y="280" width="159" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-5" value="JDBC" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="266" y="312" width="159" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-7" value="Database" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="318" y="368" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-8" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fillColor=#1ba1e2;strokeColor=#006EAF;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="348" y="368" as="sourcePoint" />
+            <mxPoint x="348" y="336" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-11" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.86;exitY=0.049;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=#e51400;strokeColor=#B20000;" edge="1" parent="1" source="E9vhUZX4BDC5i9uEim7Q-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="425" y="234" as="sourcePoint" />
+            <mxPoint x="477" y="184" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-12" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.329;entryY=1.093;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#60a917;strokeColor=#2D7600;" edge="1" parent="1" source="E9vhUZX4BDC5i9uEim7Q-1" target="E9vhUZX4BDC5i9uEim7Q-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="333" y="386" as="sourcePoint" />
+            <mxPoint x="383" y="336" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-16" value="repository" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="270" y="189" width="71" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="E9vhUZX4BDC5i9uEim7Q-17" value="Raw JPA" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="478" y="189" width="66" height="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

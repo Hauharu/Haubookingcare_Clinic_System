@@ -1,0 +1,179 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chỉnh sửa thông tin bác sĩ</title>
+    <th:block th:replace="layout/base :: styles"></th:block>
+</head>
+<body>
+    <div th:replace="layout/header :: header"></div>
+
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="text-center mb-0">
+                            <i class="fas fa-user-edit"></i>
+                            Chỉnh sửa thông tin bác sĩ
+                        </h1>
+                    </div>
+                    <div class="card-body p-4">
+
+                        <!-- Success Message -->
+                        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <span th:text="${successMessage}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        <!-- Error Message -->
+                        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <span th:text="${errorMessage}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <form th:action="@{'/doctors/update/' + ${doctor.id}}" th:object="${doctor}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            <input type="hidden" th:field="*{id}" />
+                            <!-- Phần thông tin cá nhân -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0"><i class="fas fa-user me-2"></i>Thông tin cá nhân</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="username" class="form-label">Tên đăng nhập <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="username" th:field="*{username}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="firstName" class="form-label">Họ <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="firstName" th:field="*{firstName}" th:classappend="${#fields.hasErrors('firstName')} ? 'is-invalid' : ''" required>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="lastName" class="form-label">Tên <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="lastName" th:field="*{lastName}" th:classappend="${#fields.hasErrors('lastName')} ? 'is-invalid' : ''" required>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''" required>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phoneNumber" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                                            <input type="tel" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" th:classappend="${#fields.hasErrors('phoneNumber')} ? 'is-invalid' : ''" placeholder="0xxxxxxxxx" required>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="dateOfBirth" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" id="dateOfBirth" th:field="*{dateOfBirth}" required>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="gender" class="form-label">Giới tính <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="gender" th:field="*{gender}" th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid' : ''" required>
+                                                <option value="">-- Chọn giới tính --</option>
+                                                <option th:each="g : ${genders}" th:value="${g}" th:text="${g}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">Địa chỉ <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="address" th:field="*{address}" rows="2" th:classappend="${#fields.hasErrors('address')} ? 'is-invalid' : ''" required></textarea>
+                                        <div class="invalid-feedback" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Phần thông tin chuyên môn -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-info text-white">
+                                    <h5 class="mb-0"><i class="fas fa-stethoscope me-2"></i>Thông tin chuyên môn</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="specialtyId" class="form-label">Chuyên khoa <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="specialtyId" th:field="*{specialtyId}" th:classappend="${#fields.hasErrors('specialtyId')} ? 'is-invalid' : ''" required>
+                                                <option value="">-- Chọn chuyên khoa --</option>
+                                                <option th:each="s : ${specialties}" th:value="${s.id}" th:text="${s.name}"></option>
+                                            </select>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('specialtyId')}" th:errors="*{specialtyId}"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="yearsExperience" class="form-label">Số năm kinh nghiệm</label>
+                                            <input type="number" class="form-control" id="yearsExperience" th:field="*{yearsExperience}" min="0" max="50">
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('yearsExperience')}" th:errors="*{yearsExperience}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <label for="biography" class="form-label">Tiểu sử</label>
+                                            <textarea class="form-control" id="biography" th:field="*{biography}" rows="3" th:classappend="${#fields.hasErrors('biography')} ? 'is-invalid' : ''"></textarea>
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('biography')}" th:errors="*{biography}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="consultationFee" class="form-label">Phí khám</label>
+                                            <input type="number" class="form-control" id="consultationFee" th:field="*{consultationFee}" min="0" step="0.01">
+                                            <div class="invalid-feedback" th:if="${#fields.hasErrors('consultationFee')}" th:errors="*{consultationFee}"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="avatar" class="form-label">Ảnh đại diện</label>
+                                            <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*">
+                                            <div class="mt-2">
+                                                <img th:if="${doctor.avatarUrl}" th:src="${doctor.avatarUrl}" alt="Avatar" class="img-thumbnail" style="max-width: 120px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <a th:href="@{/doctors}" class="btn btn-secondary me-md-2">
+                                            <i class="fas fa-times"></i> Hủy
+                                        </a>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save"></i> Cập nhật thông tin
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="layout/footer :: footer"></div>
+
+    <script>
+        // Form validation
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+</html>

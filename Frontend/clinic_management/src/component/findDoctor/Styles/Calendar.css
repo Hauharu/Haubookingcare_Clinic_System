@@ -1,0 +1,208 @@
+/* Hiệu ứng cho nút Hủy lọc giống nút Tìm kiếm, thêm hiệu ứng scale khi active */
+.btn-cancel-filter {
+    opacity: 1 !important;
+    border: 2px solid #1976d2 !important;
+    color: #1976d2 !important;
+    background: #fff !important;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+    font-weight: 500;
+}
+.btn-cancel-filter:hover,
+.btn-cancel-filter:focus {
+    background: #e3f2fd !important;
+    color: #1976d2 !important;
+    border-color: #1976d2 !important;
+}
+.btn-cancel-filter:active {
+    background: #bbdefb !important;
+    color: #1976d2 !important;
+    border-color: #1976d2 !important;
+    transform: scale(0.95);
+}
+/* Hiệu ứng cho nút Hủy lọc giống nút Tìm kiếm */
+.btn-cancel-filter {
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.btn-cancel-filter:hover,
+.btn-cancel-filter:focus {
+    background: #e3f2fd !important;
+    color: #1976d2 !important;
+    border-color: #1976d2 !important;
+}
+.btn-cancel-filter:active {
+    background: #bbdefb !important;
+    color: #1976d2 !important;
+    border-color: #1976d2 !important;
+}
+/* Lịch trống - nút khung giờ */
+.doctor-slot-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+    justify-content: center;
+}
+.doctor-slot-btn {
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 2px solid #90caf9;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    min-width: 120px;
+    padding: 10px 16px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    transition: all 0.2s;
+    margin-bottom: 4px;
+}
+.doctor-slot-btn:hover {
+    background: #1976d2;
+    color: #fff;
+    border-color: #1976d2;
+    transform: translateY(-2px) scale(1.07);
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
+}
+.doctor-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1976d2;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+.doctor-card-divider {
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, #90caf9, #1976d2);
+    margin: 10px auto 16px auto;
+    border-radius: 1px;
+}
+.search-bar {
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.form-label {
+  font-size: 1rem;
+  color: #007bff;
+}
+
+.rounded-pill {
+  border-radius: 50px !important;
+}
+/* Card container */
+.card-body-custom {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+}
+
+/* Card hover effect */
+.card-body-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Card title */
+.card-body-custom .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Card text */
+.card-body-custom .card-text {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Card image */
+.card-body-custom img {
+    border-radius: 15px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Button styling */
+.card-body-custom .btn {
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.card-body-custom .btn:hover {
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Tiêu đề chính */
+.calendar-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hiệu ứng animation */
+.animated-title {
+    animation: fadeInSlide 1.5s ease-in-out;
+}
+
+/* Keyframes cho animation */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hiệu ứng gạch chân */
+.calendar-title::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    margin: 10px auto 0;
+    border-radius: 2px;
+    animation: slideIn 1.5s ease-in-out;
+}
+
+/* Keyframes cho hiệu ứng gạch chân */
+@keyframes slideIn {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 50%;
+    }
+}

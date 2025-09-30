@@ -1,0 +1,164 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách bác sĩ</title>
+    <th:block th:replace="layout/base :: styles"></th:block>
+</head>
+<body>
+    <div th:replace="layout/header :: header"></div>
+
+    <section class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mb-4">
+                    <i class="fas fa-user-md text-primary"></i>
+                    Danh sách bác sĩ
+                </h2>
+
+                <!-- Alert messages -->
+                <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <span th:text="${successMessage}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <span th:text="${errorMessage}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a th:href="@{/doctors/create-doctor}" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Thêm bác sĩ mới
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <span class="badge bg-info fs-6" th:if="${doctors}" th:text="'Tổng số: ' + ${totalElements}"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctors table -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Ảnh</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
+                                <th>Điện thoại</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:if="${doctors == null or doctors.empty}">
+                                <td colspan="6" class="text-center text-muted">
+                                    <i class="fas fa-user-md fa-3x mb-3"></i><br>
+                                    Chưa có bác sĩ nào trong hệ thống
+                                </td>
+                            </tr>
+                            <tr th:each="doctor : ${doctors?.content}">
+                                <td>
+                                    <img th:if="${doctor.avatar}"
+                                         th:src="${doctor.avatar}"
+                                         alt="Avatar"
+                                         class="rounded-circle"
+                                         style="width: 40px; height: 40px; object-fit: cover;">
+                                    <div th:unless="${doctor.avatar}"
+                                         class="bg-secondary rounded-circle d-inline-flex align-items-center justify-content-center"
+                                         style="width: 40px; height: 40px;">
+                                        <i class="fas fa-user text-white"></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <strong th:text="${doctor.firstName + ' ' + doctor.lastName}"></strong><br>
+                                    <small class="text-muted" th:text="${doctor.username}"></small>
+                                </td>
+                                <td th:text="${doctor.email}"></td>
+                                <td th:text="${doctor.phoneNumber}"></td> <!-- ✅ FIX: phone -> phoneNumber -->
+                                <td>
+                                    <span th:if="${doctor.isActive}" class="badge bg-success">Đang hoạt động</span>
+                                    <span th:unless="${doctor.isActive}" class="badge bg-danger">Không hoạt động</span>
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-cog"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" th:href="@{'/doctors/update/' + ${doctor.id}}">
+                                                    <i class="fas fa-edit"></i> Chỉnh sửa
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <form th:action="@{'/doctors/delete/' + ${doctor.id}}" method="post"
+                                                      class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa bác sĩ này?')">
+                                                    <button type="submit" class="dropdown-item text-danger">
+                                                        <i class="fas fa-trash"></i> Xóa
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div th:if="${doctors != null and totalPages > 1}" class="d-flex justify-content-center">
+                    <nav aria-label="Doctor pagination">
+                        <ul class="pagination">
+                            <!-- Previous page -->
+                            <li class="page-item" th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
+                                <a class="page-link" th:href="@{/doctors(page=${currentPage - 1})}"
+                                   th:unless="${currentPage == 0}">Trước</a>
+                                <span class="page-link" th:if="${currentPage == 0}">Trước</span>
+                            </li>
+
+                            <!-- Page numbers -->
+                            <li class="page-item" th:each="pageNum : ${#numbers.sequence(0, totalPages - 1)}"
+                                th:class="${pageNum == currentPage} ? 'page-item active' : 'page-item'"
+                                th:if="${pageNum >= currentPage - 2 and pageNum <= currentPage + 2}">
+                                <a class="page-link" th:href="@{/doctors(page=${pageNum})}"
+                                   th:text="${pageNum + 1}" th:unless="${pageNum == currentPage}"></a>
+                                <span class="page-link" th:if="${pageNum == currentPage}" th:text="${pageNum + 1}"></span>
+                            </li>
+
+                            <!-- Next page -->
+                            <li class="page-item" th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+                                <a class="page-link" th:href="@{/doctors(page=${currentPage + 1})}"
+                                   th:unless="${currentPage == totalPages - 1}">Sau</a>
+                                <span class="page-link" th:if="${currentPage == totalPages - 1}">Sau</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="layout/footer :: footer"></div>
+
+    <script>
+        // Initialize tooltips
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /chats/{chatId}/messages/{messageId} {
+      allow read, write: if true;
+    }
+    match /messages/{document=**} {
+      allow read, write: if true;
+    }
+    match /{document=**}/messages/{messageId} {
+      allow read, write: if true;
+    }
+    // Thêm rules cho video calls
+    match /calls/{callId} {
+      allow read, write: if true;
+    }
+    match /calls/{document=**} {
+      allow read, write: if true;
+    }
+    // Thêm rules cho videoCalls collection
+    match /videoCalls/{callId} {
+      allow read, write: if true;
+    }
+    match /videoCalls/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

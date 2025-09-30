@@ -1,0 +1,129 @@
+/* Card styles */
+.payment-method-card {
+    transition: all 0.3s ease;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 350px !important; /* Fixed height for all cards */
+    margin-bottom: 20px;
+}
+
+.card-body-custom {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Logo and icon styles */
+.payment-logo,
+.cash-icon {
+    height: 100px; /* Fixed height for both logo and icon */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.payment-logo {
+    width: 160px;
+    object-fit: contain;
+}
+
+.cash-icon {
+    font-size: 100px;
+    color: #28a745;
+}
+
+/* payment-method-card logo chỉnh lớn đều */
+.payment-method-card .payment-logo {
+  height: 100px;
+  max-width: 160px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.payment-method-card .cash-icon {
+  font-size: 100px;
+  margin-bottom: 20px;
+  display: block;
+  text-align: center;
+}
+
+/* Text styles */
+.payment-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.payment-description {
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    flex: 1; /* Take up remaining space */
+    display: flex;
+    align-items: center;
+}
+
+.payment-method-card .payment-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.payment-method-card .payment-description {
+  font-size: 1rem;
+  color: #444;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* Radio button */
+.form-check {
+    margin-top: auto;
+}
+
+/* Hover and selected states */
+.payment-method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.payment-method-card.selected {
+    border-color: #007bff;
+    background-color: #f8f9ff;
+    box-shadow: 0 0 0 2px #003087;
+}
+
+.payment-method-card.selected {
+  box-shadow: 0 0 0 2px #007bff;
+}
+
+/* Đảm bảo các card đều căn giữa nội dung */
+.payment-method-card .card-body-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+/* Chỉ tăng logo PayPal và VNPay, giữ cash-icon như cũ */
+.payment-method-card .payment-logo[alt*="PayPal"],
+.payment-method-card .payment-logo[alt*="VNPay"] {
+  height: 100px;
+  max-width: 160px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

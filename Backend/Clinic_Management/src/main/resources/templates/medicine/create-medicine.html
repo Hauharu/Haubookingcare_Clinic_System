@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/base :: styles">
+    <title>Thêm/Cập nhật thuốc</title>
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Thêm thuốc mới</h2>
+        </div>
+        <div class="card-body">
+            <form th:action="@{${formAction}}" th:object="${medicine}" method="post">
+                <!-- Hiển thị thông báo lỗi -->
+                <div th:if="${errorMessage}" class="alert alert-danger">
+                    <span th:text="${errorMessage}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Tên thuốc</label>
+                    <input type="text" class="form-control" id="name" th:field="*{name}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Mô tả</label>
+                    <textarea class="form-control" id="description" th:field="*{description}" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="unit" class="form-label">Đơn vị</label>
+                    <input type="text" class="form-control" id="unit" th:field="*{unit}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="pricePerUnit" class="form-label">Giá mỗi đơn vị</label>
+                    <input type="number" class="form-control" id="pricePerUnit" th:field="*{pricePerUnit}" min="0" step="0.01" required>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a th:href="@{/medicines}" class="btn btn-secondary">Quay lại</a>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>

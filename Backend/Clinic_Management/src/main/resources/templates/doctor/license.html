@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Xét duyệt chứng chỉ hành nghề</title>
+        <th:block th:replace="layout/base :: styles"></th:block>
+    </head>
+    <body>
+        <div th:replace="layout/header :: header"></div>
+        <section class="container mt-5">
+            <h2>Danh sách chứng chỉ hành nghề</h2>
+            <div th:if="${successMessage}" class="alert alert-success">
+                <p th:text="${successMessage}"></p>
+            </div>
+            <div th:if="${errorMessage}" class="alert alert-danger">
+                <p th:text="${errorMessage}"></p>
+            </div>
+            <div class="mb-3 mt-3 table-responsive">
+                <table class="table-striped table">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Mã số chứng chỉ</th>
+                            <th>Ngày cấp</th>
+                            <th>Ngày hết hạn</th>
+                            <th>Cơ quan cấp</th>
+                            <th>Chuyên môn</th>
+                            <th>Trạng thái xét duyệt</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="l : ${license}">
+                            <td th:text="${l.doctor != null && l.doctor.user != null ? l.doctor.user.firstName + ' ' + l.doctor.user.lastName : 'Không có dữ liệu'}"></td>
+                            <td th:text="${l.licenseNumber}"></td>
+                            <td th:text="${l.issueDate}"></td>
+                            <td th:text="${l.expiryDate}"></td>
+                            <td th:text="${l.issuingAuthority}"></td>
+                            <td th:text="${l.scopeDescription}"></td>
+                            <td>
+                                <span th:if="${l.isVerified}" class="badge bg-success">Đã duyệt</span>
+                                <span th:unless="${l.isVerified}" class="badge bg-warning text-dark">Chưa duyệt</span>
+                            </td>
+                            <td>
+                                <th:block th:if="${!l.isVerified}">
+                                    <form th:action="@{'/license/' + ${l.id}}" method="post" style="display:inline;">
+                                        <input type="hidden" name="isVerified" value="true" />
+                                        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Duyệt chứng chỉ hành nghề</button>
+                                    </form>
+                                </th:block>
+                                <form th:action="@{'/license/' + ${l.id}}" method="post" style="display:inline;">
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('Bạn có chắc chắn muốn xóa chứng chỉ này?')">Từ chối</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div th:replace="layout/footer :: footer"></div>
+    </body>
+</html>

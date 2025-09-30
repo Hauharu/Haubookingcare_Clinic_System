@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tạo chuyên khoa</title>
+    <th:block th:replace="layout/base :: styles"></th:block>
+</head>
+<body>
+    <div th:replace="layout/header :: header"></div>
+
+    <div class="main-content">
+        <div class="specialty-container">
+            <h1 class="text-center mb-2 mt-4">Tạo chuyên khoa</h1>
+
+            <!-- Hiển thị thông báo thành công -->
+            <div th:if="${successMessage}" class="alert alert-success container">
+                <p th:text="${successMessage}"></p>
+            </div>
+
+            <!-- Hiển thị thông báo lỗi -->
+            <div th:if="${errorMessage}" class="alert alert-danger container">
+                <p th:text="${errorMessage}"></p>
+            </div>
+
+            <div class="container">
+                <div class="form-container">
+                    <form method="post" th:action="${isUpdate} ? @{/specialty/update-specialty} : @{/specialty/create-specialty}" th:object="${specialty}">
+                        <div class="col-md-12 mt-4 mb-4">
+                            <label for="name" class="form-label">Tên chuyên khoa:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Tên chuyên khoa:" th:field="*{name}" required/>
+                        </div>
+
+                        <div class="col-md-12 mt-4 mb-4">
+                            <label for="description" class="form-label">Mô tả:</label>
+                            <textarea class="form-control" id="description" rows="4" placeholder="Mô tả chuyên khoa:" th:field="*{description}"></textarea>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="hidden" th:if="${isUpdate}" th:field="*{id}" />
+                            <button class="btn btn-success mt-1" type="submit">
+                                <span th:if="${isUpdate}">Cập nhật chuyên khoa</span>
+                                <span th:unless="${isUpdate}">Thêm chuyên khoa</span>
+                            </button>
+                            <a th:href="@{/specialty}" class="btn btn-secondary mt-1 ms-2">Danh sách chuyên khoa</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="layout/footer :: footer"></div>
+</body>
+</html>
