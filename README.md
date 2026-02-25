@@ -26,7 +26,7 @@ real-time messaging and chat, medical record management, diagnosis and prescript
 # 💻System Architecture
 <p align="center">
   <img src="https://github.com/Hauharu/Haubookingcare_Clinic_System/blob/main/image/system_architect.png" 
-  width="800" />
+  width="700" />
 </p>
 
 ---
