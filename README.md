@@ -24,7 +24,6 @@ real-time messaging and chat, medical record management, diagnosis and prescript
 ---
 
 ## Table of Contents
-- [Demo](#demo)
 - [Key Highlights](#key-highlights)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
@@ -37,8 +36,6 @@ real-time messaging and chat, medical record management, diagnosis and prescript
 - [License](#license)
 
 ---
-
-## Demo
 
 <p align="center">
   <img src="image/ClassDiagram0.png" alt="Class Diagram" width="400" />
